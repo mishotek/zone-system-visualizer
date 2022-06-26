@@ -1,0 +1,29 @@
+<nb-card>
+  <nb-card-header>
+    <span>Measurements</span>
+
+    <fieldset class="fieldset">
+      <label for="aperture" class="label">Aperture:</label>
+      <nb-select (selectedChange)="onApertureChange($event)"
+                 id="aperture"
+                 size="small"
+                 placeholder="Aperture"
+                 [selected]="aperture$ | async">
+        <nb-option *ngFor="let aperture of APERTURES" [value]="aperture">
+          ƒ {{aperture}}
+        </nb-option>
+      </nb-select>
+    </fieldset>
+  </nb-card-header>
+
+  <p *ngIf="noMeasurements$ | async"
+     class="caption-2 text-hint">
+    No measurements added yet
+  </p>
+
+  <nb-list>
+    <nb-list-item *ngFor="let measurement of measurements$ | async">
+      {{ measurement.name }} - 1/{{ measurement.shutterSpeed }} sec
+    </nb-list-item>
+  </nb-list>
+</nb-card>

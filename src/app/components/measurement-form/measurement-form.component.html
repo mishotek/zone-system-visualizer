@@ -1,0 +1,25 @@
+<nb-card>
+  <nb-card-body class="example-items-rows">
+    <form class="form"
+          [formGroup]="measurementFormGroup"
+          (ngSubmit)="onSubmit()">
+      <nb-select placeholder="Shutter speed"
+                 formControlName="shutterSpeed">
+        <nb-option *ngFor="let shutterSpeed of SHUTTER_SPEEDS"
+                   [value]="shutterSpeed">
+          {{shutterSpeed}}
+        </nb-option>
+      </nb-select>
+
+      <input nbInput
+             formControlName="name"
+             placeholder="Name">
+
+      <button nbButton
+              status="success"
+              [disabled]="measurementFormGroup.invalid">
+        Add
+      </button>
+    </form>
+  </nb-card-body>
+</nb-card>
